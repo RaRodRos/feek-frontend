@@ -119,46 +119,67 @@ nav.nav-bar > ul > li > a > img {
 
 nav.nav-bar > ul > li > a > img.big {
 	height: 3rem;
-	width: 5.4rem;
 }
 
 
 
-/* Changes for desktop */
-@media (orientation: landscape) and (min-width: 800px) {
-	html {
-		--content-width: 70%;
-	}
-	body {
-		inline-size: 65vw;
-		margin-inline: auto;
-  }
-	footer {
-		width: inherit;
-	}
-	@media (min-width: 1440px) {
+/* Desktop */
+@media (orientation: landscape) {
+	nav.chat-nav > ul > li > a {
+		width: var(--content-width);
+	}	
+	@media (width >= 900px) {
+		html {
+			--content-width: 70%;
+		}
 		body {
-			inline-size: 45vw;
+			inline-size: 65vw;
+			min-inline-size: 900px;
+			margin-inline: auto;
+		}
+		footer {
+			width: inherit;
 		}
 	}
 }
 
-/* Adaptation for very small screens */
-@media (width <= 270px) {
-	nav.chat-nav > ul > li > a {
-		flex-wrap: wrap;
-		justify-content: center;
-		align-items: center;
-		flex-direction: column;
+/* Very small screens */
+@media (height <= 650px) or (orientation:landscape) {
+	header {
+		height: 4rem;
+		padding-block-end: .8rem;
 	}
-	nav.chat-nav > ul > li > a > div 	{
-		margin-inline: 0;
-		text-align: center;
+	nav.nav-bar {
+		padding-block: 0.4rem;
 	}
-	nav.chat-nav > ul > li > a > div > h2 {
-		margin-block: 1rem .6rem;
-	}	
+
+	@media (height <= 475px) {
+		header {
+			position: static;
+		}
+		nav.nav-bar > ul > li > a > img.big {
+			height: 2rem;
+		}
+	}
+
+	@media (width <= 300px) {
+		nav.chat-nav > ul > li > a {
+			flex-wrap: wrap;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+		}
+		nav.chat-nav > ul > li > a > div 	{
+			margin-inline: 0;
+			text-align: center;
+		}
+		nav.chat-nav > ul > li > a > div > h2 {
+			margin-block: 1rem .6rem;
+		}
+	}
 }
+
+
 
 /* Animations */
 @media (prefers-reduced-motion: no-preference) {
