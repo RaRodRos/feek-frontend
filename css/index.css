@@ -7,32 +7,185 @@
 	src:
 		local("SF Pro Text Semibold"),
 		local('SFProText-Semibold'),
-		url('./fonts/SFProText-Semibold.ttf') format('truetype');
+		url('../fonts/SFProText-Semibold.ttf') format('truetype');
+}
+
+html {
+	background: linear-gradient(42deg, rgba(255,0,0,1) 0%, rgba(255,0,224,1) 100%);
+	font-size: min(max(13px, 2.2vw), 22px);
+	--content-width: 100%;
+	--border-grey: .15vmin solid rgba(0, 0, 0, .3);
+	--standard-length: 1.25rem;
+	--bg-color: #fff;
 }
 
 body {
-	font:
-		400
-		13px/18px
-		'Roboto' sans-serif;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 400;
+	/* Use rem to maintain fluid typography */
 	color: #000;
-	background: #fdc7ec;
-}
-@media (min-aspect-ratio: 1/1) and (min-width: 900px) {
-	body {
-		aspect-ratio: 6/13;
-  }
+	background: var(--bg-color);
+	min-block-size: 100vh;
 }
 
+
+
+header {
+	position: sticky;
+	top: 0;
+	z-index: 1;
+	height: 6.7rem;
+	background: inherit;
+	padding-block-end: .8rem;
+	display: flex;
+	justify-content: space-evenly;
+}
 h1.chat-title {
+	align-self: flex-end;
 	font:
-		17px/22px
-		SFProText-Semibold sans-serif;
+		1.5rem/1.6rem
+		SFProText-Semibold, sans-serif;
 	text-align: center;
-	letter-spacing: -0.408px;
 }
 
-h2 {
+
+
+/* Main */
+main {
+	overflow: hidden;
+}
+
+nav.chat-nav > ul > li > a {
+	display:flex;
+	justify-content: flex-start;
+	align-items: stretch;
+	height: 100%;
+	width: var(--content-width);
+	margin-inline: auto;
+	padding: 1.25rem 1.25rem 1.55rem 1.25rem;
+	color: initial;
+	text-decoration: initial;
+	border-block-end: var(--border-grey);
+}
+nav.chat-nav > ul > li:first-of-type > a {
+	border-block: var(--border-grey);
+}
+
+nav.chat-nav > ul > li > a > div 	{
+	order: 1;
+	margin-inline-start: var(--standard-length);
+}
+
+nav.chat-nav > ul > li > a > div > h2 {
 	font-weight: 700;
+	margin-block-end: .6rem;
 }
 
+nav.chat-nav img {
+	order: 0;
+	flex-shrink: 0;
+	width: 5rem;
+	height: 5rem;
+	object-fit: cover;
+	clip-path: circle(2.5rem at 50% 50%);
+}
+
+
+
+/* Footer */
+footer {
+	position: sticky;
+	bottom: 0%;
+	width: 100%;
+	background: inherit;
+}
+
+nav.nav-bar {
+	width: var(--content-width);
+	margin-inline: auto;
+	padding-block: calc(var(--standard-length) / 2) calc(var(--standard-length) * 2);
+	border-block-start: var(--border-grey);
+}
+
+nav.nav-bar > ul {
+	display:flex;
+	align-items: center;
+	justify-content: space-around;
+}
+
+nav.nav-bar > ul > li > a > img {
+	height: 1.5rem;
+}
+
+nav.nav-bar > ul > li > a > img.big {
+	height: 3rem;
+	width: 5.4rem;
+}
+
+
+
+/* Changes for desktop */
+@media (orientation: landscape) and (min-width: 800px) {
+	html {
+		--content-width: 70%;
+	}
+	body {
+		inline-size: 65vw;
+		margin-inline: auto;
+  }
+	footer {
+		width: inherit;
+	}
+	@media (min-width: 1440px) {
+		body {
+			inline-size: 45vw;
+		}
+	}
+}
+
+/* Adaptation for very small screens */
+@media (width <= 270px) {
+	nav.chat-nav > ul > li > a {
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+	}
+	nav.chat-nav > ul > li > a > div 	{
+		margin-inline: 0;
+		text-align: center;
+	}
+	nav.chat-nav > ul > li > a > div > h2 {
+		margin-block: 1rem .6rem;
+	}	
+}
+
+/* Animations */
+@media (prefers-reduced-motion: no-preference) {
+	nav.chat-nav > ul > li > a {
+		transition:
+			box-shadow 600ms cubic-bezier(0.165, 0.84, 0.44, 1),
+			transform 600ms cubic-bezier(0.165, 0.84, 0.44, 1)
+	}
+	nav.chat-nav > ul > li > a:hover, nav.chat-nav > ul > li > a:focus {
+		outline: none;
+		z-index: 9999;
+		box-shadow: .3rem .9rem 1.1rem 0rem rgba(138, 75, 135, 0.404);
+		transform: scale3d(1.1, 1.1, 1.1);
+	}
+	
+	nav.nav-bar > ul > li > a > img {
+		transition:
+			filter 600ms cubic-bezier(0.165, 0.84, 0.44, 1),
+			transform 600ms cubic-bezier(0.165, 0.84, 0.44, 1)
+	}
+	nav.nav-bar > ul > li > a > img:hover, nav.nav-bar > ul > li > a:focus {
+		transform: scale3d(1.2, 1.2, 1.2);
+		filter: drop-shadow(.12rem 3.25rem .15rem rgba(88, 49, 87, 0.856));
+		outline: none;
+	}
+	nav.nav-bar > ul > li > a > img.big:hover, nav.nav-bar > ul > li > a > img.big:focus {
+		transform: scale3d(1.1, 1.1, 1.1);
+		filter: drop-shadow(.4rem .55rem .45rem rgba(121, 69, 119, 0.678));
+	}	
+}
