@@ -181,7 +181,7 @@ nav.nav-bar > ul > li > a > img.big {
 	}
 	nav.nav-bar > ul > li > a > img:hover, nav.nav-bar > ul > li > a:focus {
 		transform: scale3d(1.2, 1.2, 1.2);
-		filter: drop-shadow(.12rem 3.25rem .15rem rgba(88, 49, 87, 0.856));
+		filter: drop-shadow(.12rem .25rem .15rem rgba(88, 49, 87, 0.856));
 		outline: none;
 	}
 	nav.nav-bar > ul > li > a > img.big:hover, nav.nav-bar > ul > li > a > img.big:focus {
